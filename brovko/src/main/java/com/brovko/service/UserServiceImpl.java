@@ -1,5 +1,6 @@
 package com.brovko.service;
 
+import com.brovko.domain.Role;
 import com.brovko.domain.User;
 import com.brovko.repository.RoleRepository;
 import com.brovko.repository.UserRepository;
@@ -8,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -21,13 +23,23 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles(new HashSet<>(roleRepository.findAll()));
+        Set<Role> roleSet = new HashSet<Role>(roleRepository.findAll());
+        Role role = null;
+        for (Role r: roleSet) {
+            if (r.equals("USER")){
+                role = r;
+            }
+        }
+        user.setPasswordHash(bCryptPasswordEncoder.encode(user.getPasswordHash()));
+
+        if (role != null){
+            user.getRoles().add(role);
+        }
         userRepository.save(user);
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userRepository.findByEmail(username);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

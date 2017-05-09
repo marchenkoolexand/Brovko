@@ -4,10 +4,20 @@
 <body>
 <div class="form">
 
-    <form action="/login" method="post">
-        <input type="text" name="username"/>
-        <input type="password" name="password"/>
-        <button type="submit">Sign in</button>
+    <!-- <form action="/login" method="post">
+         <input type="text" name="username"/>
+         <input type="password" name="password"/>
+         <button type="submit">Sign in</button>
+     </form> -->
+
+
+    <form method="POST" action="/login">
+        <div>
+
+            <input name="username" type="text"/>
+            <input name="password" type="password"/>
+            <button type="submit">Log In</button>
+        </div>
     </form>
 
 </div>

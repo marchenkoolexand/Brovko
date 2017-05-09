@@ -22,7 +22,7 @@ public class BrovkoWebApplication extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) throws Exception {
-        //System.setProperty("spring.devtools.restart.enabled", "false");  Prevent automatically restart whenever files on the classpath change.
+        //System.setProperty("spring.devtools.restart.enabled", "false");  //Prevent automatically restart whenever files on the classpath change.
         SpringApplication.run(BrovkoWebApplication.class, args);
     }
 }

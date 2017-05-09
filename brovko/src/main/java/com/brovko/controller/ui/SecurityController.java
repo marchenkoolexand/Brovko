@@ -16,7 +16,7 @@ public class SecurityController {
 
     final static Logger logger = Logger.getLogger(SecurityController.class);
 
-    @RequestMapping(value = "/login2", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Map<String, Object> model) {
         return "login";
     }
@@ -28,10 +28,9 @@ public class SecurityController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration() {
-
-       // securityService.autologin(user.getUsername(), user.getPassword());
-
-        return "redirect:/welcome";
+        //TODO
+       //securityService.autologin(user.getUsername(), user.getPassword());
+        return "welcome";
     }
 
     @RequestMapping(value = "/invalidSession", method = RequestMethod.GET)

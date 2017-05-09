@@ -10,7 +10,7 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping( method = RequestMethod.GET)
     String admin(Map<String, Object> model) {
         return "admin";
     }
