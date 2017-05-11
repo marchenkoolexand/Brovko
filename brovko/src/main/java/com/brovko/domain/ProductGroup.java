@@ -17,7 +17,7 @@ public class ProductGroup implements Serializable {
     @Column(name = "br_group_img_id")
     private int groupImgId;
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinTable(name = "s_joined_category", joinColumns = @JoinColumn(name = "s_product_group_fk"), inverseJoinColumns = @JoinColumn(name = "s_category_fk"))
+    @JoinTable(name = "br_joined_category", joinColumns = @JoinColumn(name = "br_product_group_fk"), inverseJoinColumns = @JoinColumn(name = "br_category_fk"))
     Set<Category> categorySet;
 
     public ProductGroup() {

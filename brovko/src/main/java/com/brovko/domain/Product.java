@@ -32,7 +32,7 @@ public class Product implements Serializable {
     @Column(name = "br_product_avaible")
     private boolean avaibleInStock;
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinTable(name = "s_joined_comments", joinColumns = @JoinColumn(name = "s_product_fk"), inverseJoinColumns = @JoinColumn(name = "s_comment_fk"))
+    @JoinTable(name = "br_joined_comments", joinColumns = @JoinColumn(name = "br_product_fk"), inverseJoinColumns = @JoinColumn(name = "br_comment_fk"))
     private List<Comment> commentList;
     @Column(name = "br_product_characteristics")
     @ElementCollection

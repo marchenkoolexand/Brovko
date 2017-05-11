@@ -23,8 +23,10 @@ public class User implements Serializable {
     private String email;
     @Column(name = "br_password", nullable = false, length = 60)
     private String passwordHash;
-    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinTable(name = "br_joined_user_roles", joinColumns = @JoinColumn(name = "br_user_fk"), inverseJoinColumns = @JoinColumn(name = "br_role_fk"))
+    //@JoinTable(name = "br_joined_user_roles", joinColumns = @JoinColumn(name = "br_user_fk"), inverseJoinColumns = @JoinColumn(name = "br_role_fk"))
+    @JoinTable(name = "br_roles", joinColumns = @JoinColumn(name = "br_user_id"))
+    @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
     @Column(name = "br_first_name")
     private String firstName;
@@ -42,7 +44,7 @@ public class User implements Serializable {
     private Sex sex;
     @Column(name = "br_birth_date")
     private LocalDateTime dateOfBirth;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
     @PrimaryKeyJoinColumn
     private UserSocialInfo userSocialInfo;
     @Column(name = "br_about")

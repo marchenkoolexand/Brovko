@@ -60,13 +60,6 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:4.3.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-jta-atomikos:1.5.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: com.atomikos:transactions-jms:3.9.3" level="project" />
-    <orderEntry type="library" name="Maven: com.atomikos:transactions-jta:3.9.3" level="project" />
-    <orderEntry type="library" name="Maven: com.atomikos:transactions:3.9.3" level="project" />
-    <orderEntry type="library" name="Maven: com.atomikos:transactions-api:3.9.3" level="project" />
-    <orderEntry type="library" name="Maven: com.atomikos:atomikos-util:3.9.3" level="project" />
-    <orderEntry type="library" name="Maven: com.atomikos:transactions-jdbc:3.9.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-actuator:1.5.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-actuator:1.5.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-hateoas:1.5.3.RELEASE" level="project" />
