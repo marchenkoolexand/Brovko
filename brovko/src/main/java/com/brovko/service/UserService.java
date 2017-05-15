@@ -2,9 +2,16 @@ package com.brovko.service;
 
 import com.brovko.domain.User;
 
+import java.util.Collection;
+import java.util.Optional;
+
 public interface UserService {
 
-    public void save(User user);
+    Optional<User> getUserById(long id);
 
-    public User findByEmail(String email);
+    User getUserByEmail(String email);
+
+    Collection<User> getAllUsers();
+
+    User create(User user);
 }

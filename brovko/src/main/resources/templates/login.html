@@ -3,23 +3,18 @@
 <head lang="en"></head>
 <body>
 <div class="form">
-
-    <!-- <form action="/login" method="post">
-         <input type="text" name="username"/>
-         <input type="password" name="password"/>
-         <button type="submit">Sign in</button>
-     </form> -->
-
-
     <form method="POST" action="/login">
         <div>
 
-            <input name="username" type="text"/>
+            <input name="email" type="text"/>
             <input name="password" type="password"/>
-            <button type="submit">Log In</button>
         </div>
+        <div>
+            <label for="remember-me">Remember me</label>
+            <input type="checkbox" name="remember-me" id="remember-me"/>
+        </div>
+        <button type="submit">Log In</button>
     </form>
-
 </div>
 </body>
 </html>

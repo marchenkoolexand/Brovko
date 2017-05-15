@@ -2,6 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en"></head>
 <body>
-registration
+<form action="/registration" method="POST">
+        Email:<br/>
+        <input type="email" name="email"/><br/>
+        Password:<br/>
+        <input type="password" name="password"/><br/>
+        Recovery email:<br/>
+        <input type="email" name="recoveryEmail"/><br/>
+        First name:<br/>
+        <input type="text" name="firstName"/><br/>
+        Last name:<br/>
+        <input type="text" name="lastName"/><br/>
+        <input type="submit" value="Submit"/>
+</form>
 </body>
 </html>

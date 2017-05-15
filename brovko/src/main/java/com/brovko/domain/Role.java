@@ -2,5 +2,5 @@ package com.brovko.domain;
 
 public enum Role {
 
-    USER,CUSTOMER,ADMIN
+    ROLE_USER, ROLE_CUSTOMER, ROLE_ADMIN, ROLE_DB_ADMIN
 }

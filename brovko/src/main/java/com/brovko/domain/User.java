@@ -5,9 +5,7 @@ import com.brovko.converters.IntArrayToStringConverter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "br_users")
@@ -21,13 +19,13 @@ public class User implements Serializable {
     private int avatarId;
     @Column(name = "br_email", unique = true, nullable = false, length = 45)
     private String email;
-    @Column(name = "br_password", nullable = false, length = 60)
+    @Column(name = "br_password", nullable = false, length = 65)
     private String passwordHash;
-    //@JoinTable(name = "br_joined_user_roles", joinColumns = @JoinColumn(name = "br_user_fk"), inverseJoinColumns = @JoinColumn(name = "br_role_fk"))
-    @JoinTable(name = "br_roles", joinColumns = @JoinColumn(name = "br_user_id"))
-    @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
+    //@JoinTable(name = "br_roles", joinColumns = @JoinColumn(name = "br_user_id"))
+    //@ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
+    @Column(name = "br_role", nullable = false)
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles = new HashSet<>();
+    private Role role;
     @Column(name = "br_first_name")
     private String firstName;
     @Column(name = "br_last_name")
@@ -44,7 +42,7 @@ public class User implements Serializable {
     private Sex sex;
     @Column(name = "br_birth_date")
     private LocalDateTime dateOfBirth;
-    @OneToOne(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @PrimaryKeyJoinColumn
     private UserSocialInfo userSocialInfo;
     @Column(name = "br_about")
@@ -56,11 +54,10 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(int avatarId, String email, String passwordHash, Set<Role> roles, String firstName, String lastName, String recoveryEmail, String phoneNumber, boolean enabled, String userPreferedLanguage, Sex sex, LocalDateTime dateOfBirth, UserSocialInfo userSocialInfo, String aboutYourSelf, List<Integer> favoriteProductIds) {
+    public User(int avatarId, String email, String passwordHash, String firstName, String lastName, String recoveryEmail, String phoneNumber, boolean enabled, String userPreferedLanguage, Sex sex, LocalDateTime dateOfBirth, UserSocialInfo userSocialInfo, String aboutYourSelf, List<Integer> favoriteProductIds) {
         this.avatarId = avatarId;
         this.email = email;
         this.passwordHash = passwordHash;
-        this.roles = roles;
         this.firstName = firstName;
         this.lastName = lastName;
         this.recoveryEmail = recoveryEmail;
@@ -106,12 +103,12 @@ public class User implements Serializable {
         this.passwordHash = passwordHash;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -214,7 +211,6 @@ public class User implements Serializable {
         if (id != null ? !id.equals(user.id) : user.id != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (passwordHash != null ? !passwordHash.equals(user.passwordHash) : user.passwordHash != null) return false;
-        if (roles != null ? !roles.equals(user.roles) : user.roles != null) return false;
         if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
         if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
         if (recoveryEmail != null ? !recoveryEmail.equals(user.recoveryEmail) : user.recoveryEmail != null)
@@ -237,7 +233,6 @@ public class User implements Serializable {
         result = 31 * result + avatarId;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (passwordHash != null ? passwordHash.hashCode() : 0);
-        result = 31 * result + (roles != null ? roles.hashCode() : 0);
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (recoveryEmail != null ? recoveryEmail.hashCode() : 0);
@@ -259,7 +254,6 @@ public class User implements Serializable {
                 ", avatarId=" + avatarId +
                 ", email='" + email + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
-                ", roles=" + roles +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", recoveryEmail='" + recoveryEmail + '\'' +

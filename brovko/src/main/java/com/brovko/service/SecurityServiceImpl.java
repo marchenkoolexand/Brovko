@@ -5,11 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Component;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class SecurityServiceImpl implements SecurityService {
@@ -31,16 +34,12 @@ public class SecurityServiceImpl implements SecurityService {
         return null;
     }
 
-
     @Override
-    public void autoLogin(String email, String password) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
-
-        authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-
-        if (usernamePasswordAuthenticationToken.isAuthenticated()) {
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-        }
+    public void autoLogin(String email, String password, HttpServletRequest request) {
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
+        request.getSession();
+        token.setDetails(new WebAuthenticationDetails(request));
+        Authentication authenticatedUser = authenticationManager.authenticate(token);
+        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
     }
 }
